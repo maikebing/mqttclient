@@ -22,7 +22,7 @@ int platform_net_socket_connect(const char *host, const char *port, int proto)
     if (getaddrinfo(host, port, &hints, &addr_list) != 0) {
         return ret;
     }
-    
+    signal(SIGPIPE, SIG_IGN);
     for (cur = addr_list; cur != NULL; cur = cur->ai_next) {
         fd = socket(cur->ai_family, cur->ai_socktype, cur->ai_protocol);
         if (fd < 0) {

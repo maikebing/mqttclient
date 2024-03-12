@@ -40,16 +40,22 @@ void platform_thread_startup(platform_thread_t* thread)
 
 void platform_thread_stop(platform_thread_t* thread)
 {
-    pthread_mutex_lock(&(thread->mutex));
-    pthread_cond_wait(&(thread->cond), &(thread->mutex));
-    pthread_mutex_unlock(&(thread->mutex));
+    if (NULL != thread)
+    {
+        pthread_mutex_lock(&(thread->mutex));
+        pthread_cond_wait(&(thread->cond), &(thread->mutex));
+        pthread_mutex_unlock(&(thread->mutex));
+    }
 }
 
 void platform_thread_start(platform_thread_t* thread)
 {
-    pthread_mutex_lock(&(thread->mutex)); 
-    pthread_cond_signal(&(thread->cond));
-    pthread_mutex_unlock(&(thread->mutex));
+    if (NULL != thread)
+    {
+        pthread_mutex_lock(&(thread->mutex));
+        pthread_cond_signal(&(thread->cond));
+        pthread_mutex_unlock(&(thread->mutex));
+    }
 }
 
 void platform_thread_destroy(platform_thread_t* thread)
