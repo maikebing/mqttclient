@@ -27,13 +27,13 @@
 #endif
 
 #define     MQTT_MAX_PACKET_ID                  (0xFFFF - 1)
-#define     MQTT_TOPIC_LEN_MAX                  64
-#define     MQTT_ACK_HANDLER_NUM_MAX            64
+#define     MQTT_TOPIC_LEN_MAX                  256
+#define     MQTT_ACK_HANDLER_NUM_MAX            256
 #define     MQTT_DEFAULT_BUF_SIZE               40960
 #define     MQTT_DEFAULT_CMD_TIMEOUT            5000
 #define     MQTT_MAX_CMD_TIMEOUT                20000
 #define     MQTT_MIN_CMD_TIMEOUT                1000
-#define     MQTT_KEEP_ALIVE_INTERVAL            50         // unit: second
+#define     MQTT_KEEP_ALIVE_INTERVAL            10         // unit: second
 #define     MQTT_VERSION                        4           // 4 is mqtt 3.1.1
 #define     MQTT_RECONNECT_DEFAULT_DURATION     1000
 #define     MQTT_THREAD_STACK_SIZE              2048

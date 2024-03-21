@@ -36,8 +36,8 @@ void salof(const char *fmt, ...);
 #endif
 
 #if SALOF_LOG_COLOR
-    #define SALOF_LOG_START(l, c)     SALOF_PRINT_LOG("\033\n["#c"m["#l"] >> ")
-    #define SALOF_LOG_END             SALOF_PRINT_LOG("\033[0m")  
+    #define SALOF_LOG_START(l, c)     SALOF_PRINT_LOG("\033["#c"m["#l"] >> ")
+    #define SALOF_LOG_END             SALOF_PRINT_LOG("\033[0m\n")  
 #else
     #define SALOF_LOG_START(l, c)     SALOF_PRINT_LOG("\n["#l"] >> ")
     #define SALOF_LOG_END       

@@ -274,7 +274,9 @@ static message_handlers_t *mqtt_get_msg_handler(mqtt_client_t* c, MQTTString* to
     /* traverse the msg_handler_list to find the matching message handler */
     LIST_FOR_EACH_SAFE(curr, next, &c->mqtt_msg_handler_list) {
         msg_handler = LIST_ENTRY(curr, message_handlers_t, list);
-
+        char __tmp_topic[128] = { 0 };
+        strncpy(__tmp_topic, topic_name->lenstring.data, topic_name->lenstring.len);
+        MQTT_LOG_I("%s:%d %s()...\ntopic: %s, topic_filter %s", __FILE__, __LINE__, __FUNCTION__, __tmp_topic, msg_handler->topic_filter);
         /* judge topic is equal or match, support wildcard, such as '#' '+' */
         if ((NULL != msg_handler->topic_filter) && ((MQTTPacket_equals(topic_name, (char*)msg_handler->topic_filter)) || 
             (mqtt_topic_is_matched((char*)msg_handler->topic_filter, topic_name)))) {
