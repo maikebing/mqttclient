@@ -101,8 +101,8 @@ int platform_net_socket_write_timeout(int fd, unsigned char *buf, int len, int t
     setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char *)&tv,sizeof(struct timeval));
     signal(SIGPIPE, SIG_IGN);
     struct tcp_info info;
-    int len = sizeof(info);
-    getsockopt(fd, IPPROTO_TCP, TCP_INFO, &info, (socklen_t*)&len);
+    socklen_t _len = sizeof(info);
+    getsockopt(fd, IPPROTO_TCP, TCP_INFO, &info, (socklen_t*)&_len);
     if ((info.tcpi_state == TCP_ESTABLISHED))
     {
         return write(fd, buf, len);
